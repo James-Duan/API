@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>测试结果</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.common.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.common.min.js"></script> -->
+    
+    
+<style type="text/css" media="screen">
+    body        { font-family: Microsoft YaHei,Consolas,arial,sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+    a.popup_link:hover {
+        color: red;
+    }
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { background-color: #bdedbc; }
+    .failClass  { background-color: #ffefa4; }
+    .errorClass { background-color: #ffc9c9; }
+    .passCase   { color: #6c6; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+    /* level - 0:Summary; 1:Failed; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level > 1) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+            }
+        }
+    }
+    function showClassDetail(cid, count) {
+        var id_list = Array(count);
+        var toHide = 1;
+        for (var i = 0; i < count; i++) {
+            tid0 = 't' + cid.substr(1) + '.' + (i+1);
+            tid = 'f' + tid0;
+            tr = document.getElementById(tid);
+            if (!tr) {
+                tid = 'p' + tid0;
+                tr = document.getElementById(tid);
+            }
+            id_list[i] = tid;
+            if (tr.className) {
+                toHide = 0;
+            }
+        }
+        for (var i = 0; i < count; i++) {
+            tid = id_list[i];
+            if (toHide) {
+                document.getElementById('div_'+tid).style.display = 'none'
+                document.getElementById(tid).className = 'hiddenRow';
+            }
+            else {
+                document.getElementById(tid).className = '';
+            }
+        }
+    }
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    --></script>
+    <div id="div_base">
+        
+    <div class='page-header'>
+        <h1>测试结果</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2018-08-24 22:43:13</p>
+<p class='attribute'><strong>运行时长:</strong> 0:00:10.058451</p>
+<p class='attribute'><strong>状态:</strong> 通过 40 失败 1</p>
+
+    </div>
+    <div style="float: left;width:50%;"><p class='description'>API result</p></div>
+    <div id="chart" style="width:50%;height:400px;float:left;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>查看</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>api_test.test_campaign_list.TestCampaignList</td>
+        <td>13</td>
+        <td>13</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',13)">详情</a></td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        通过</a>
+    <div id='div_pt1.1' class="popup_window">
+        <pre>pt1.1: 获取广告计划列表基础请求
+2018-08-24 22:43:14,084 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.299746 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_base_customerId_empty_1</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        通过</a>
+    <div id='div_pt1.2' class="popup_window">
+        <pre>pt1.2: 获取广告计划列表customerId未传
+2018-08-24 22:43:14,154 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_base_customerId_empty_1 Method:GET Success:False Code:20 Msg:参数错误 Desc:customerId参数不能为空 Time_Cost:0:00:00.065296 
+ URL:http://api.e.mi.com/campaign/list?edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=0c4dd8ed29b68d5e65b3bc7e49635ce8
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_base_customerId_empty_2</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        通过</a>
+    <div id='div_pt1.3' class="popup_window">
+        <pre>pt1.3: 获取广告计划列表customerId为空
+2018-08-24 22:43:14,544 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_base_customerId_empty_2 Method:GET Success:False Code:20 Msg:参数错误 Desc:customerId参数不能为空 Time_Cost:0:00:00.382626 
+ URL:http://api.e.mi.com/campaign/list?customerId=&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=278e73076d7c2a0e7d9dcf380b4352f6
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_base_customerId_empty_3</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        通过</a>
+    <div id='div_pt1.4' class="popup_window">
+        <pre>pt1.4: 获取广告计划列表customerId与singId不匹配
+2018-08-24 22:43:14,665 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_base_customerId_empty_3 Method:GET Success:False Code:12 Msg:错误的sign参数 Desc:非法的账户信息 Time_Cost:0:00:00.114334 
+ URL:http://api.e.mi.com/campaign/list?customerId=123&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=955c7a762fcd67026c52b94705e8f95b
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_edate</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        通过</a>
+    <div id='div_pt1.5' class="popup_window">
+        <pre>pt1.5: 2018-08-24 22:43:14,937 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_edate Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.264924 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_kw</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        通过</a>
+    <div id='div_pt1.6' class="popup_window">
+        <pre>pt1.6: kw关键字正常校验
+2018-08-24 22:43:15,169 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_kw Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.224768 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;kw=&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=8093f818e15710903b65c38266091fec
+2018-08-24 22:43:15,466 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_kw Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.285706 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;kw=%E5%95%86%E5%BA%97&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=59db04c1f5341ce7f234b6035a3eade8
+2018-08-24 22:43:15,652 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_kw Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.180014 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;kw=100030663&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=4919ef3c058eb2293b4389e12c5b72f2
+2018-08-24 22:43:15,808 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_kw Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.153638 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;kw=hfdsajdkas&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=1f84c2ff27177e3cf63909d22cdaf5fc
+2018-08-24 22:43:15,976 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_kw Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.167164 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;kw=1234hhh&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=e63fd41c75fbde0d6e13fb3c0381009a
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_orderby</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        通过</a>
+    <div id='div_pt1.7' class="popup_window">
+        <pre>pt1.7: 2018-08-24 22:43:16,205 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_orderby Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.221563 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;orderby=viewSum&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=ed35fc74a6178d062348b0642ccd4750
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_page</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        通过</a>
+    <div id='div_pt1.8' class="popup_window">
+        <pre>pt1.8: 2018-08-24 22:43:16,434 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_page Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.218524 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;page=1&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=ae63002e462e1d232820eb794635ba06
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_pagesize</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        通过</a>
+    <div id='div_pt1.9' class="popup_window">
+        <pre>pt1.9: 2018-08-24 22:43:16,653 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_pagesize Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.212007 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;pagesize=2&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=bfd71d62265eba9a0709bf0b42b0d793
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_sdate</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        通过</a>
+    <div id='div_pt1.10' class="popup_window">
+        <pre>pt1.10: 2018-08-24 22:43:16,849 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_sdate Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.191075 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_sortMode</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        通过</a>
+    <div id='div_pt1.11' class="popup_window">
+        <pre>pt1.11: 2018-08-24 22:43:17,064 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_sortMode Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.207434 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;orderby=viewSum&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sortMode=1&amp;sign=0ac0921cc9f0de60c836cea868670653
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_status</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        通过</a>
+    <div id='div_pt1.12' class="popup_window">
+        <pre>pt1.12: 2018-08-24 22:43:17,301 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_status Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.231145 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;status=1&amp;sign=e5f73e0b72f7ab26bf2caa0e1bd8d461
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_list_type</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        通过</a>
+    <div id='div_pt1.13' class="popup_window">
+        <pre>pt1.13: 2018-08-24 22:43:17,491 - DEBUG - &gt;File:test_campaign_list.py Module:test_campaign_list_type Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.183811 
+ URL:http://api.e.mi.com/campaign/list?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;type=1&amp;sign=7a56a5fbb1adc50ce18c68c2bef886d0
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_campaign_info.TestCampaignInfo</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',2)">详情</a></td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_info_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        通过</a>
+    <div id='div_pt2.1' class="popup_window">
+        <pre>pt2.1: 2018-08-24 22:43:17,672 - DEBUG - &gt;File:test_campaign_info.py Module:test_campaign_info_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.176655 
+ URL:http://api.e.mi.com/campaign/info?campaignId=100038745&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=15a37e516137c27f961e27d4679a1dca
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_info_without_campaignId</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        通过</a>
+    <div id='div_pt2.2' class="popup_window">
+        <pre>pt2.2: 2018-08-24 22:43:17,745 - DEBUG - &gt;File:test_campaign_info.py Module:test_campaign_info_without_campaignId Method:GET Success:False Code:20 Msg:参数错误 Desc:campaignId参数不能为空 Time_Cost:0:00:00.065369 
+ URL:http://api.e.mi.com/campaign/info?customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=111c627c304c639a96cc6a987ae0e521
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_campaign_edit_status.TestCampaignEditStatus</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c3',2)">详情</a></td>
+    </tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_edit_status_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        通过</a>
+    <div id='div_pt3.1' class="popup_window">
+        <pre>pt3.1: 2018-08-24 22:43:17,925 - DEBUG - &gt;File:test_campaign_edit_status.py Module:test_campaign_edit_status_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.169454 URL:http://api.e.mi.com/campaign/edit/status?campaignIds=100038745&amp;customerId=39382&amp;newval=1&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=1d4a1da95b629b7de0f3cdbb6c6109f1
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt3.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_edit_status_more_campaignid</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.2')" >
+        通过</a>
+    <div id='div_pt3.2' class="popup_window">
+        <pre>pt3.2: 2018-08-24 22:43:18,119 - DEBUG - &gt;File:test_campaign_edit_status.py Module:test_campaign_edit_status_more_campaignid Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.188703 URL:http://api.e.mi.com/campaign/edit/status?campaignIds=100038745,100038746,100038747&amp;customerId=39382&amp;newval=2&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=f7df614e5ac0c841243540fe38392ecd
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_campaign_edit_budget.TestCampaignEditBudget</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c4',3)">详情</a></td>
+    </tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_edit_budget_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        通过</a>
+    <div id='div_pt4.1' class="popup_window">
+        <pre>pt4.1: 2018-08-24 22:43:18,271 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.146447 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=1000&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=c1a36c108c4c322f3a59b202c9dce538
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt4.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_edit_budget_campaignid</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.2')" >
+        通过</a>
+    <div id='div_pt4.2' class="popup_window">
+        <pre>pt4.2: 2018-08-24 22:43:18,389 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_campaignid Method:GET Success:False Code:13 Msg:没有权限 Desc:无权访问8387 Time_Cost:0:00:00.114453 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=8387&amp;customerId=39382&amp;newval=1000&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=3b3443e7b77ba6e62003f50d1f98327f
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt4.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_campaign_edit_budget_newval</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.3')" >
+        通过</a>
+    <div id='div_pt4.3' class="popup_window">
+        <pre>pt4.3: 2018-08-24 22:43:18,435 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval错误：必须大于等于200 Time_Cost:0:00:00.042115 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=-1&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=ab5fec1113424da7e346ad69a2f975e5
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval错误：必须大于等于200'}
+2018-08-24 22:43:18,507 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval错误：必须大于等于200 Time_Cost:0:00:00.068440 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=199&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=587695235df6c5f815bc1b3cf88dbc0a
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval错误：必须大于等于200'}
+2018-08-24 22:43:18,551 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval错误：必须为整数 Time_Cost:0:00:00.040303 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=199.9&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=37be8ebda8ffd208330d70dea4fb51c2
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval错误：必须为整数'}
+2018-08-24 22:43:18,600 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval错误：必须为整数 Time_Cost:0:00:00.046153 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=100000000.99&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=f7bd94a10c6dd56c9e692436310b8c3f
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval错误：必须为整数'}
+2018-08-24 22:43:18,665 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval错误：必须小于等于100000000 Time_Cost:0:00:00.061354 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=100000001&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=1eb71e9a1428a82ee0127a96c1a5b19e
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval错误：必须小于等于100000000'}
+2018-08-24 22:43:18,741 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval参数不能为空 Time_Cost:0:00:00.070280 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=b25f64f09275bbcbe098cee0b7e997b1
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval参数不能为空'}
+2018-08-24 22:43:18,811 - DEBUG - &gt;File:test_campaign_edit_budget.py Module:test_campaign_edit_budget_newval Method:GET Success:False Code:20 Msg:参数错误 Desc:newval参数不能为空 Time_Cost:0:00:00.064525 URL:http://api.e.mi.com/campaign/edit/budget?campaignId=100038747&amp;customerId=39382&amp;newval=%20&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=5fff3bf1eae18902c986d011ac27e6b1
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'newval参数不能为空'}
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_group_list.TestGroupList</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c5',1)">详情</a></td>
+    </tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_group_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        通过</a>
+    <div id='div_pt5.1' class="popup_window">
+        <pre>pt5.1: 2018-08-24 22:43:19,085 - DEBUG - &gt;File:test_group_list.py Module:test_group_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.266393 
+ URL:http://api.e.mi.com/group/list?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_group_info.TestGroupInfo</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c6',1)">详情</a></td>
+    </tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_group_info_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        通过</a>
+    <div id='div_pt6.1' class="popup_window">
+        <pre>pt6.1: 2018-08-24 22:43:19,283 - DEBUG - &gt;File:test_group_info.py Module:test_group_info_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.185066 
+ URL:http://api.e.mi.com/group/info?customerId=39382&amp;groupId=100065492&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=75a743146020a4ef6c55a50da2b0ae6b
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_group_edit_status.TestGroupEditStatus</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c7',1)">详情</a></td>
+    </tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_group_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        通过</a>
+    <div id='div_pt7.1' class="popup_window">
+        <pre>pt7.1: 2018-08-24 22:43:19,483 - DEBUG - &gt;File:test_group_edit_status.py Module:test_group_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.190307 URL:http://api.e.mi.com/group/edit/status?customerId=39382&amp;groupIds=100065492,100065486&amp;newval=2&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=0c2d76e6d5d127c14447f9d0f4571d09
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_creative_getids.TestCreativeGetIds</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c8',1)">详情</a></td>
+    </tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        通过</a>
+    <div id='div_pt8.1' class="popup_window">
+        <pre>pt8.1: 2018-08-24 22:43:19,635 - DEBUG - &gt;File:test_creative_getids.py Module:test_creative_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.146241 
+ URL:http://api.e.mi.com/creative/getIds?customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=111c627c304c639a96cc6a987ae0e521
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_creative_list.TestCreativeList</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c9',1)">详情</a></td>
+    </tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        通过</a>
+    <div id='div_pt9.1' class="popup_window">
+        <pre>pt9.1: 2018-08-24 22:43:19,903 - DEBUG - &gt;File:test_creative_list.py Module:test_creative_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.260512 
+ URL:http://api.e.mi.com/creative/list?customerId=39382&amp;edate=2018-08-23&amp;groupId=100065489&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=3f67b8e6dda261c0225ed5df09a04074
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_creative_info.TestCreativeInfo</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c10',1)">详情</a></td>
+    </tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        通过</a>
+    <div id='div_pt10.1' class="popup_window">
+        <pre>pt10.1: 2018-08-24 22:43:20,196 - DEBUG - &gt;File:test_creative_info.py Module:test_creative_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.283295 
+ URL:http://api.e.mi.com/creative/info?creativeId=100210616&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=dc1284aa81d5caf4a8aed8276f518e49
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_creative_edit_status.TestCreativeEditStatus</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c11',1)">详情</a></td>
+    </tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_edit_list_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        通过</a>
+    <div id='div_pt11.1' class="popup_window">
+        <pre>pt11.1: 2018-08-24 22:43:20,352 - DEBUG - &gt;File:test_creative_edit_status.py Module:test_creative_edit_list_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.146789 URL:http://api.e.mi.com/creative/edit/status?creativeIds=100210622,100210624&amp;customerId=39382&amp;newval=2&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=e205e2c28179c298e869a2c2372426a8
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_creative_edit_bid.TestCreativeEditBid</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c12',3)">详情</a></td>
+    </tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_edit_bid_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        通过</a>
+    <div id='div_pt12.1' class="popup_window">
+        <pre>pt12.1: 2018-08-24 22:43:20,493 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.134356 URL:http://api.e.mi.com/creative/edit/bid?bidding=%7B%22bid%22:2,%22billingType%22:1%7D&amp;creativeId=100210619&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=d241d5e4cd07d0a1e551a3ca674183bb
+{'success': True, 'code': 0}
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt12.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_edit_bid_bid_error</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.2')" >
+        通过</a>
+    <div id='div_pt12.2' class="popup_window">
+        <pre>pt12.2: 2018-08-24 22:43:21,472 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_bid_error Method:GET Success:False Code:202 Msg:创意改价失败 Desc:广告创意出价不能高于10.00元 Time_Cost:0:00:00.973299 URL:http://api.e.mi.com/creative/edit/bid?bid=%7B%22bid%22:,%22billingType%22:1%7D&amp;bidding=%7B%22bid%22:200,%22billingType%22:1%7D&amp;creativeId=100210618&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=1f25c9a13bd9965dac53368f1fca08a2
+{'success': False, 'code': 202, 'msg': '创意改价失败', 'desc': '广告创意出价不能高于10.00元'}
+2018-08-24 22:43:21,595 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_bid_error Method:GET Success:False Code:202 Msg:创意改价失败 Desc:广告创意出价不能高于10.00元 Time_Cost:0:00:00.119719 URL:http://api.e.mi.com/creative/edit/bid?bid=%7B%22bid%22:0.01,%22billingType%22:1%7D&amp;bidding=%7B%22bid%22:200,%22billingType%22:1%7D&amp;creativeId=100210618&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=dab27bcbd1c12a5fbb5f3307b351915d
+{'success': False, 'code': 202, 'msg': '创意改价失败', 'desc': '广告创意出价不能高于10.00元'}
+2018-08-24 22:43:21,746 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_bid_error Method:GET Success:False Code:202 Msg:创意改价失败 Desc:广告创意出价不能高于10.00元 Time_Cost:0:00:00.148579 URL:http://api.e.mi.com/creative/edit/bid?bid=%7B%22bid%22:1000,%22billingType%22:1%7D&amp;bidding=%7B%22bid%22:200,%22billingType%22:1%7D&amp;creativeId=100210618&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=2b0dcdab4dba3eb7aeec2a7c083343cf
+{'success': False, 'code': 202, 'msg': '创意改价失败', 'desc': '广告创意出价不能高于10.00元'}
+2018-08-24 22:43:21,899 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_bid_error Method:GET Success:False Code:202 Msg:创意改价失败 Desc:广告创意出价不能高于10.00元 Time_Cost:0:00:00.151948 URL:http://api.e.mi.com/creative/edit/bid?bid=%7B%22bid%22:t,%22billingType%22:1%7D&amp;bidding=%7B%22bid%22:200,%22billingType%22:1%7D&amp;creativeId=100210618&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=b9a85415c4567f4c2e915b18f13bf18f
+{'success': False, 'code': 202, 'msg': '创意改价失败', 'desc': '广告创意出价不能高于10.00元'}
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt12.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_creative_edit_bid_creative_error</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.3')" >
+        通过</a>
+    <div id='div_pt12.3' class="popup_window">
+        <pre>pt12.3: 2018-08-24 22:43:21,948 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_creative_error Method:GET Success:False Code:20 Msg:参数错误 Desc:creativeId参数不能为空 Time_Cost:0:00:00.046834 URL:http://api.e.mi.com/creative/edit/bid?bidding=%7B%22bid%22:2,%22billingType%22:1%7D&amp;creativeId=&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=075143cd7318c4e1247f0e372e9431d1
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'creativeId参数不能为空'}
+2018-08-24 22:43:21,989 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_creative_error Method:GET Success:False Code:20 Msg:参数错误 Desc:creativeId参数不能为空 Time_Cost:0:00:00.040049 URL:http://api.e.mi.com/creative/edit/bid?bidding=%7B%22bid%22:2,%22billingType%22:1%7D&amp;creativeId=%20%20%20&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=5954f20e84067076087f7e283bf5181d
+{'success': False, 'code': 20, 'msg': '参数错误', 'desc': 'creativeId参数不能为空'}
+2018-08-24 22:43:22,122 - DEBUG - &gt;File:test_creative_edit_bid.py Module:test_creative_edit_bid_creative_error Method:GET Success:False Code:13 Msg:没有权限 Desc:无权访问5220 Time_Cost:0:00:00.128233 URL:http://api.e.mi.com/creative/edit/bid?bidding=%7B%22bid%22:2,%22billingType%22:1%7D&amp;creativeId=5220&amp;customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=0f7cade45eab5e8cbac424bd91ca74f9
+{'success': False, 'code': 13, 'msg': '没有权限', 'desc': '无权访问5220'}
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_report_getquarterdata.TestReportGetQuarterData</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c13',2)">详情</a></td>
+    </tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_getquarterdata_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        通过</a>
+    <div id='div_pt13.1' class="popup_window">
+        <pre>pt13.1: 2018-08-24 22:43:22,328 - DEBUG - &gt;File:test_report_getquarterdata.py Module:test_report_getquarterdata_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.194054 
+ URL:http://api.e.mi.com/report/getQuarterData?creativeIds=100210625&amp;customerId=39382&amp;date=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=e71934989da71bc9bc978cdb56f409e3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt13.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_getquarterdata_creatives</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.2')" >
+        通过</a>
+    <div id='div_pt13.2' class="popup_window">
+        <pre>pt13.2: 2018-08-24 22:43:22,495 - DEBUG - &gt;File:test_report_getquarterdata.py Module:test_report_getquarterdata_creatives Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.158774 
+ URL:http://api.e.mi.com/report/getQuarterData?creativeIds=100210620,100210623&amp;customerId=39382&amp;date=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=558e0f163fe4b44cf09703f31d73a5ba
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_report_getdata.TestReportGetData</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c14',1)">详情</a></td>
+    </tr>
+
+<tr id='pt14.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_getquarterdata_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.1')" >
+        通过</a>
+    <div id='div_pt14.1' class="popup_window">
+        <pre>pt14.1: 2018-08-24 22:43:22,669 - DEBUG - &gt;File:test_report_getdata.py Module:test_report_getquarterdata_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.169953 
+ URL:http://api.e.mi.com/report/getData?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_report_audience_province_data.TestReportGetAudienceProvinceData</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c15',1)">详情</a></td>
+    </tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_audience_province_data_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        通过</a>
+    <div id='div_pt15.1' class="popup_window">
+        <pre>pt15.1: 2018-08-24 22:43:22,827 - DEBUG - &gt;File:test_report_audience_province_data.py Module:test_report_audience_province_data_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.153378 
+ URL:http://api.e.mi.com/report/audienceProvinceData?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_report_audience_gender_data.TestReportGetAudienceGenderData</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c16',3)">详情</a></td>
+    </tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_audience_gender_data_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        通过</a>
+    <div id='div_pt16.1' class="popup_window">
+        <pre>pt16.1: 2018-08-24 22:43:22,990 - DEBUG - &gt;File:test_report_audience_gender_data.py Module:test_report_audience_gender_data_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.157341 
+ URL:http://api.e.mi.com/report/audienceGenderData?customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a0cfa1bafbea9ae0f3738b86369c0ff3
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt16.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_audience_gender_data_campaign</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.2')" >
+        通过</a>
+    <div id='div_pt16.2' class="popup_window">
+        <pre>pt16.2: 2018-08-24 22:43:23,111 - DEBUG - &gt;File:test_report_audience_gender_data.py Module:test_report_audience_gender_data_campaign Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.113130 
+ URL:http://api.e.mi.com/report/audienceGenderData?campaignIds=100038745&amp;customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=b189c8a66d56543cece6d3f1634a9a45
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt16.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_report_audience_gender_data_campaigns</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.3')" >
+        通过</a>
+    <div id='div_pt16.3' class="popup_window">
+        <pre>pt16.3: 2018-08-24 22:43:23,268 - DEBUG - &gt;File:test_report_audience_gender_data.py Module:test_report_audience_gender_data_campaigns Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.149772 
+ URL:http://api.e.mi.com/report/audienceGenderData?campaignIds=100038745,100038746&amp;customerId=39382&amp;edate=2018-08-23&amp;sdate=2018-08-23&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=46487d764cff7fc14809a66503795f12
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_account_balance.TestAccountBalance</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c17',1)">详情</a></td>
+    </tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_account_balance_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        通过</a>
+    <div id='div_pt17.1' class="popup_window">
+        <pre>pt17.1: 2018-08-24 22:43:23,407 - DEBUG - &gt;File:test_account_balance.py Module:test_account_balance_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.136619 
+ URL:http://api.e.mi.com/account/balance?customerId=39382&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=111c627c304c639a96cc6a987ae0e521
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='passClass'>
+        <td>api_test.test_account_edit_budget.TestAccountEditBudget</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c18',2)">详情</a></td>
+    </tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_account_edit_budget_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        通过</a>
+    <div id='div_pt18.1' class="popup_window">
+        <pre>pt18.1: 2018-08-24 22:43:23,537 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_budget_base Method:GET Success:True Code:0 Msg: Desc: Time_Cost:0:00:00.122875 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=500&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=1f4400647d3deb8cfc419a0375eb9f2d
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt18.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_account_edit_newDayThreshold_err</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.2')" >
+        通过</a>
+    <div id='div_pt18.2' class="popup_window">
+        <pre>pt18.2: 2018-08-24 22:43:23,584 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_newDayThreshold_err Method:GET Success:False Code:20 Msg:参数错误 Desc:newDayThreshold错误：必须大于等于200 Time_Cost:0:00:00.043099 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=199&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=f0328272ceef23bed917657de8034693
+2018-08-24 22:43:23,628 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_newDayThreshold_err Method:GET Success:False Code:20 Msg:参数错误 Desc:newDayThreshold错误：必须为整数 Time_Cost:0:00:00.040412 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=199.99&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=3ec60f5c4ce47a9ad596ada64c6a489c
+2018-08-24 22:43:23,670 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_newDayThreshold_err Method:GET Success:False Code:20 Msg:参数错误 Desc:newDayThreshold错误：必须小于等于100000000 Time_Cost:0:00:00.039679 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=100000001&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=520917702a1906c7b3ef9ac1e4dd9742
+2018-08-24 22:43:23,711 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_newDayThreshold_err Method:GET Success:False Code:20 Msg:参数错误 Desc:newDayThreshold错误：必须为整数 Time_Cost:0:00:00.038703 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=100000000.01&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=cc2e6cf187f073ed2b67e98c1a02e74e
+2018-08-24 22:43:23,750 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_newDayThreshold_err Method:GET Success:False Code:20 Msg:参数错误 Desc:newDayThreshold参数不能为空 Time_Cost:0:00:00.037216 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=a3d742fafd5adefc18529b018da6d238
+2018-08-24 22:43:23,787 - DEBUG - &gt;File:test_account_edit_budget.py Module:test_account_edit_newDayThreshold_err Method:GET Success:False Code:20 Msg:参数错误 Desc:newDayThreshold参数不能为空 Time_Cost:0:00:00.035422 URL:http://api.e.mi.com/account/edit/budget?customerId=39382&amp;newDayThreshold=%20%20&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=e74750f4cf582cca66090cc11c27d890
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+    <tr class='failClass'>
+        <td>api_test.test_agent_customers.TestAgentCustomers</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c19',1)">详情</a></td>
+    </tr>
+
+<tr id='ft19.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_account_balance_base</div></td>
+    <td colspan='5' align='center'>
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft19.1')" >
+        失败</a>
+    <div id='div_ft19.1' class="popup_window">
+        <pre>ft19.1: 2018-08-24 22:43:23,834 - DEBUG - &gt;File:test_agent_customers.py Module:test_account_balance_base Method:GET Success:False Code:4000 Msg: Desc: Time_Cost:0:00:00.043788 
+ URL:http://api.e.mi.com/agent/customers?agent=6191&amp;signId=68697641d258975bb99544a683582d4f&amp;sign=cb77ede9c3d6cce0c49c423e1af3f39a
+Traceback (most recent call last):
+  File "D:\python_work\API_test\api_test\test_agent_customers.py", line 37, in test_account_balance_base
+    self.assertTrue(json['success'])
+AssertionError: False is not true
+</pre>
+    </div>
+    <!--css div popup end-->
+    </td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>41</td>
+            <td>40</td>
+            <td>1</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            color: ['#95b75d', 'grey', '#b64645'],
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','失败','错误']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:40, name:'通过'},
+                        {value:1, name:'失败'},
+                        {value:0, name:'错误'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
